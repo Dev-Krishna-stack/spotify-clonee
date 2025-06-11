@@ -135,7 +135,7 @@ function loadArtistData(artistId) {
       monthlyListeners: '72.8M',
       songs: [
         { title: 'thank u, next', album: 'thank u, next (2019)', duration: '3:27', src: 'songs/thank-u-next.mp3' },
-        { title: '7 rings', album: 'thank u, next (2019)', duration: '2:58', src: 'songs/7-rings.mp3' },
+        { title: '7 rings', album: 'thank u, next (2019)', duration: '2:58', src: '7-rings.mp3' },
         { title: 'positions', album: 'positions (2020)', duration: '2:52', src: 'songs/positions.mp3' }
       ],
     },
