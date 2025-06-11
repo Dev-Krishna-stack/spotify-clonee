@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music Player - Subscription</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: #121212;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #eee;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #1db954, #1aa34a);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 1101;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger:hover {
+      transform: scale(1.1);
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: white;
+      user-select: none;
+      text-shadow: 1px 1px 3px #000a;
+    }
+
+    .logo img {
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 250px;
+      height: calc(100vh - 60px);
+      background-color: #000000;
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+
+    .side-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .side-menu li a {
+      display: block;
+      padding: 15px 25px;
+      color: #b3b3b3;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .side-menu li a:hover {
+      color: white;
+    }
+
+    main {
+      margin-top: 100px;
+      padding: 20px;
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 5px #0008;
+      animation: fadeInScale 1s ease forwards;
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #subscription-status {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      padding: 15px 25px;
+      background: #1f3a57;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px #123256bb;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #plans {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .plan {
+      background: #2c5364;
+      border-radius: 25px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      box-shadow: 0 8px 30px #0009;
+      padding: 30px 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      color: #e0e7ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 40px #1f4068cc;
+    }
+
+    .plan h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      letter-spacing: 1.5px;
+    }
+
+    .plan p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      color: #b8c1d4;
+      min-height: 60px;
+    }
+
+    .select-plan-btn {
+      background: #4caf50;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px #2f8e3dcc;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .select-plan-btn:hover {
+      background-color: #357a33;
+    }
+
+    .selected-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: #4caf50;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 3px 10px #388e3caa;
+      pointer-events: none;
+      user-select: none;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <span>Spotify</span>
+    </div>
+  </div>
+
+  <nav class="side-menu" id="sideMenu">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="connect.html">Connect with Us</a></li>
+     <li><a href="#" onclick="shareSite()">Share</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Subscription Plans</h1>
+    <div id="subscription-status">Current Plan: Free</div>
+    <div id="plans">
+      <div class="plan" data-plan="Free">
+        <h3>Free Plan</h3>
+        <p>Basic access with ads.</p>
+        <button class="select-plan-btn">Select</button>
+      </div>
+      <div class="plan" data-plan="Premium">
+        <h3>Premium Plan</h3>
+        <p>Ad-free, offline downloads, high quality streaming.</p>
+        <button class="select-plan-btn">Select</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const sideMenu = document.getElementById('sideMenu');
+
+    hamburger.addEventListener('click', () => {
+      sideMenu.classList.toggle('show');
+    });
+
+    const subscriptionStatus = document.getElementById('subscription-status');
+    const plans = document.querySelectorAll('.plan');
+    const buttons = document.querySelectorAll('.select-plan-btn');
+
+    let currentPlan = localStorage.getItem('subscription') || 'Free';
+
+    function updateUI() {
+      subscriptionStatus.textContent = `Current Plan: ${currentPlan}`;
+      plans.forEach(plan => {
+        const badge = plan.querySelector('.selected-badge');
+        if (plan.dataset.plan === currentPlan) {
+          if (!badge) {
+            const newBadge = document.createElement('div');
+            newBadge.className = 'selected-badge';
+            newBadge.textContent = 'Selected';
+            plan.appendChild(newBadge);
+          }
+        } else {
+          if (badge) badge.remove();
+        }
+      });
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener('click', e => {
+        const selectedPlan = e.target.closest('.plan').dataset.plan;
+        if (selectedPlan === currentPlan) {
+          alert(`You already have the ${selectedPlan} plan.`);
+          return;
+        }
+        currentPlan = selectedPlan;
+        localStorage.setItem('subscription', currentPlan);
+        updateUI();
+        alert(`Subscription changed to ${currentPlan} plan!`);
+      });
+    });
+
+    updateUI();
+  </script>
+<script src="share.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopEasy - Order Confirmation</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo"><a href="index.html">ShopEasy</a></div>
+    <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+  </header>
+
+  <main class="confirmation-container">
+    <h1>Thank you for your order!</h1>
+    <p>Your order has been placed successfully. We will process it soon.</p>
+    <a href="index.html" class="checkout-btn">Back to Home</a>
+  </main>
+
+  <script src="js/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+    });
+  </script>
+
+  <style>
+    .confirmation-container {
+      max-width: 600px;
+      margin: 80px auto;
+      text-align: center;
+      background: white;
+      padding: 40px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #2d6a4f;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .checkout-btn {
+      background: #febd69;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .checkout-btn:hover {
+      background: #f4a261;
+    }
+  </style>
+</body>
+</html>

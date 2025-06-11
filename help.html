@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spotify Help Centre</title>
+  <link rel="stylesheet" href="stylehelp.css" />
+</head>
+<body>
+<div class="navbar">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">Spotify</div>
+  </div>
+
+  <nav class="side-menu" id="sideMenu">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="connect.html">Connect with Us</a></li>
+      <li><a href="#" onclick="shareSite()">Share</a></li>
+ 
+      <li><a href="about.html">About</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Spotify Help Centre</h1>
+    <input type="text" id="search" placeholder="Search questions..." />
+  </header>
+
+  <main id="faq-container">
+    <!-- Questions populated via JS -->
+  </main>
+
+  <footer>
+    <button onclick="redirectToSettings()">🎨 Change Theme</button>
+    <a href="connect.html">📞 Connect With Us</a>
+  </footer>
+<footer>
+    <p>&copy; 2025 Spotify Help Page</p>
+  </footer>
+
+  <script src="scripthelp.js"></script>
+<script src="share.js"></script>
+</body>
+</html>

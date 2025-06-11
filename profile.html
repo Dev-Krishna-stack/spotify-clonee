@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Profile</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: #1db954;
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+      z-index: 1101;
+    }
+
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      user-select: none;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      border-radius: 3px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      margin-left: 0.75rem;
+      user-select: none;
+    }
+
+    .logo img {
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -220px;
+      width: 200px;
+      height: 100%;
+      background-color: #282828;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1100;
+    }
+
+    .side-menu.show {
+      left: 0;
+    }
+
+    .side-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .side-menu ul li {
+      padding: 1rem;
+      border-bottom: 1px solid #444;
+    }
+
+    .side-menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      display: block;
+    }
+
+    .main {
+      flex: 1;
+      background: #181818;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .info {
+      text-align: center;
+    }
+
+    .info h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .edit-btn {
+      margin-top: 10px;
+      background-color: #1db954;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .edit-btn:hover {
+      background-color: #1ed760;
+    }
+
+    input[type="text"] {
+      background: #121212;
+      color: #fff;
+      border: 1px solid #333;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 500px;
+      gap: 20px;
+    }
+
+    .card {
+      background: #282828;
+      padding: 40px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+width:800px
+    }
+
+    .card:hover {
+      background: #333;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <span>Spotify</span>
+    </div>
+  </div>
+
+  <nav class="side-menu" id="sideMenu">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="connect.html">Connect with Us</a></li>
+      <li><a href="#" onclick="shareSite()">Share</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </nav>
+
+  <div class="main">
+    <div class="main-content">
+      <div class="profile-header">
+        <label for="imageUpload">
+          <img id="profileImage" src="https://i.pravatar.cc/150?img=12" alt="Profile Pic" />
+        </label>
+        <input type="file" id="imageUpload" accept="image/*" style="display:none;" />
+        <div class="info">
+          <h2 id="displayName">musiclover99</h2>
+          <input type="text" id="nameInput" style="display:none;" />
+          <button class="edit-btn" id="editBtn">✏️ Edit Name</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="addaccount.html">
+          <div class="card">
+            <h3>Add Account</h3>
+            <p>Link another account to manage profiles.</p>
+          </div>
+        </a>
+        <a href="subscription.html">
+          <div class="card">
+            <h3>Subscription</h3>
+            <p>View or upgrade your subscription plan.</p>
+          </div>
+        </a>
+        <a href="library.html">
+          <div class="card">
+            <h3>Recently Played</h3>
+            <p>Explore your recent listening history.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const editBtn = document.getElementById("editBtn");
+    const nameInput = document.getElementById("nameInput");
+    const displayName = document.getElementById("displayName");
+    const profileImage = document.getElementById("profileImage");
+    const imageUpload = document.getElementById("imageUpload");
+    const hamburger = document.getElementById("hamburger");
+    const sideMenu = document.getElementById("sideMenu");
+
+    // Load stored name
+    let username = localStorage.getItem("spotify_username") || "musiclover99";
+    displayName.textContent = username;
+
+    // Load stored profile image if exists
+    const storedImage = localStorage.getItem("profileImage");
+    if (storedImage) {
+      profileImage.src = storedImage;
+    }
+
+    // Toggle name edit/save
+    editBtn.addEventListener("click", () => {
+      if (nameInput.style.display === "none") {
+        nameInput.style.display = "block";
+        nameInput.value = username;
+        displayName.style.display = "none";
+        editBtn.textContent = "💾 Save";
+      } else {
+        username = nameInput.value.trim() || "musiclover99";
+        localStorage.setItem("spotify_username", username);
+        displayName.textContent = username;
+        nameInput.style.display = "none";
+        displayName.style.display = "block";
+        editBtn.textContent = "✏️ Edit Name";
+      }
+    });
+
+    // Profile image upload
+    imageUpload.addEventListener("change", () => {
+      const file = imageUpload.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          profileImage.src = e.target.result;
+          localStorage.setItem("profileImage", e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Toggle sidebar
+    hamburger.addEventListener("click", () => {
+      sideMenu.classList.toggle("show");
+    });
+  </script>
+<script src="share.js"></script>
+</body>
+</html>

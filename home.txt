@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spotify Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Simple Green Banner -->
+  <div class="green-banner">
+    <span class="spotify-text">Spotify</span>
+  </div>
+
+  
+
+  <div class="main-container">
+    <!-- Sidebar -->
+    <nav class="side-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="connect.html">Connect with Us</a></li>
+        <li><a href="#" onclick="shareSite()">Share</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="help.html">Help</a></li>
+<li style="padding-top:12rem;"><a href="login.html">LOGOUT</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Music Categories -->
+      <div class="music-categories">
+        <h2 class="first-heading">Popular Trending Songs</h2>
+        <div class="horizontal-section">
+          <div class="card" onclick="playSong('songs/songs1.mp3', 'Danza Kuduro - Don Omar')">
+            <img src="danza.jpeg" alt="Danza Kuduro" />
+            <p>Danza Kuduro</p>
+          </div>
+          <div class="card" onclick="playSong('songs/songs2.mp3', 'Despacito - Luis Fonsi')">
+            <img src="luis.jpeg" alt="Despacito" />
+            <p>Despacito</p>
+          </div>
+          <div class="card" onclick="playSong('songs/songs3.mp3', 'Gangnam Style - PSY')">
+            <img src="psy.jpeg" alt="Gangnam Style" />
+            <p>Gangnam Style</p>
+          </div>
+          <div class="card" onclick="playSong('songs/songs4.mp3', 'On The Floor - Jennifer Lopez')">
+            <img src="jennifer.jpeg" alt="On The Floor" />
+            <p>On The Floor</p>
+          </div>
+          <div class="card" onclick="playSong('songs/songs5.mp3', 'Sorry - Justin Bieber')">
+            <img src="justin.jpeg" alt="Sorry" />
+            <p>Sorry</p>
+          </div>
+          <div class="card" onclick="playSong('songs/songs6.mp3', 'We Dont Talk Anymore - Charlie Puth')">
+            <img src="charlie.jpeg" alt="We Dont Talk Anymore" />
+            <p>We Dont Talk Anymore</p>
+          </div>
+        </div>
+
+        <h2>Artists</h2>
+        <div class="horizontal-section">
+          <div class="card" onclick="window.location.href='songs.html?artist=weeknd'">
+            <img src="https://i.scdn.co/image/ab67616100005174b5f9e28219c169fd4b9e8379" alt="The Weeknd" />
+            <p>The Weeknd</p>
+          </div>
+          <div class="card" onclick="window.location.href='songs.html?artist=ed-sheeran'">
+            <img src="edsheeran.jpeg" alt="Ed Sheeran" />
+            <p>Ed Sheeran</p>
+          </div>
+          <div class="card" onclick="window.location.href='songs.html?artist=ariana-grande'">
+            <img src="ariana.jpeg" alt="Ariana Grande" />
+            <p>Ariana Grande</p>
+          </div>
+          <div class="card" onclick="window.location.href='songs.html?artist=post-malone'">
+            <img src="post.jpeg" alt="Post Malone" />
+            <p>Post Malone</p>
+          </div>
+          <div class="card" onclick="window.location.href='songs.html?artist=bruno-mars'">
+            <img src="bruno.jpeg" alt="Bruno Mars" />
+            <p>Bruno Mars</p>
+          </div>
+          <div class="card" onclick="window.location.href='songs.html?artist=taylor-swift'">
+            <img src="taylor.jpeg" alt="Taylor Swift" />
+            <p>Taylor Swift</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Music Player -->
+      <div class="music-player">
+        <div class="track-info">
+          <p id="trackName">No track selected</p>
+        </div>
+        <div class="player-controls">
+          <button id="prev">⏮️</button>
+          <button id="play">▶️</button>
+          <button id="next">⏭️</button>
+        </div>
+<div class="sliders">
+          <input type="range" id="progress" min="0" max="1" step="0.001" value="0" />
+          <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+        </div>
+      </div>
+
+      <audio id="audio"></audio>
+      <script src="script.js"></script>
+    </div>
+  </div>
+</body>
+
+</html>

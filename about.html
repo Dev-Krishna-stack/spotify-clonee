@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Spotify</title>
+  <link rel="stylesheet" href="aboutspot.css" />
+</head>
+<body>
+<div class="navbar">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+<div class="logo">Spotify</div>
+  </div>
+
+  <nav class="side-menu" id="sideMenu">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="connect.html">Connect with Us</a></li>
+     <li><a href="#" onclick="shareSite()">Share</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="help.html">Help</a></li>
+
+    </ul>
+  </nav>
+
+  <header>
+    <h1>About Spotify</h1>
+  </header>
+
+  <main>
+    <section class="intro">
+      <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/09/Spotify_Logo_CMYK_Green.png" alt="Spotify Logo" />
+      <p>
+        Spotify is a digital music, podcast, and video streaming service that gives you access to millions of songs and content from creators all over the world.
+      </p>
+      <button onclick="showMore()">Learn More</button>
+      <div id="moreContent" style="display: none;">
+        <p>
+          Founded in 2025, Spotify has revolutionized how people listen to music. With personalized playlists like Discover Weekly and Spotify Wrapped, users enjoy a deeply tailored music experience.
+        </p>
+        <p>
+          Available on desktop, mobile, tablets, and smart devices, Spotify provides both free and premium plans. Premium offers ad-free listening, offline downloads, and high-quality audio.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Spotify</p>
+  </footer>
+
+  <script src="aboutspot.js"></script>
+<script src="share.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #191414;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fixed green banner */
+.green-banner {
+  background-color: #1DB954;
+  color: white;
+  padding: 15px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.spotify-text {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+/* Main layout */
+.main-container {
+  display: flex;
+  margin-top: 60px; /* Offset for fixed banner */
+}
+
+/* Sidebar menu */
+.side-menu {
+  position: fixed;
+  top: 60px; /* align below the green banner */
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 60px);
+  background-color: #000000;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.side-menu ul {
+  list-style: none;
+}
+
+.side-menu li a {
+  display: block;
+  padding: 15px 25px;
+  color: #b3b3b3;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.side-menu li a:hover {
+  color: white;
+}
+
+/* Main content */
+.content {
+  margin-left: 250px;
+  padding: 20px;
+  padding-bottom: 100px;
+  width: calc(100% - 250px);
+}
+
+/* Music Categories */
+.music-categories h2 {
+  margin: 20px 0;
+  font-size: 24px;
+}
+
+.first-heading {
+  margin-top: 0 !important;
+}
+
+.horizontal-section {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 0;
+  scrollbar-width: none;
+}
+
+.horizontal-section::-webkit-scrollbar {
+  display: none;
+}
+
+/* Song Cards */
+.card {
+  min-width: 150px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Music Player */
+.music-player {
+  position: fixed;
+  bottom: 0;
+  left: 250px;
+  right: 0;
+  background-color: #282828;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.track-info {
+  width: 200px;
+}
+
+.player-controls {
+  display: flex;
+  gap: 20px;
+}
+
+.player-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sliders {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sliders input[type="range"] {
+  width: 100%;
+}
+
+/* Artist Page Styles (for songs.html) */
+.artist-header {
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  background: linear-gradient(to bottom, #1DB954, #191414);
+  color: white;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.artist-header img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+  border: 5px solid white;
+}
+
+.artist-info h1 {
+  font-size: 48px;
+  margin: 0 0 10px 0;
+}
+
+.stats {
+  color: #b3b3b3;
+  margin: 0 0 20px 0;
+}
+
+.actions button {
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.play-button {
+  background-color: #1DB954;
+  color: white;
+}
+
+.follow-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white !important;
+}
+
+.song-list {
+  margin-bottom: 30px;
+}
+
+.song-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.song-item:hover {
+  background-color: #282828;
+}
+
+.song-item .number {
+  width: 30px;
+  text-align: center;
+  color: #b3b3b3;
+}
+
+.song-item img {
+  width: 50px;
+  height: 50px;
+  margin: 0 15px;
+  border-radius: 5px;
+}
+
+.song-info {
+  flex-grow: 1;
+}
+
+.song-title {
+  margin: 0;
+  font-weight: bold;
+}
+
+.song-album {
+  margin: 5px 0 0 0;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.duration {
+  color: #b3b3b3;
+  margin-right: 20px;
+}

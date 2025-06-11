@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artist Songs | Spotify Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="green-banner">
+    <span class="spotify-text">Spotify</span>
+  </div>
+
+  <div class="main-container">
+    <!-- Sidebar -->
+    <nav class="side-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Library</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Artist Header -->
+      <div class="artist-header">
+        <img id="artist-image" src="" alt="Artist" />
+        <div class="artist-info">
+          <h1 id="artist-name">Loading...</h1>
+          <p class="stats" id="artist-stats"></p>
+          <div class="actions">
+            <button class="play-button">PLAY</button>
+            <button class="follow-button">FOLLOW</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Songs -->
+      <div class="popular-songs">
+        <h2>Popular</h2>
+        <div class="song-list" id="popular-songs">
+          <!-- Songs will be added dynamically -->
+        </div>
+      </div>
+
+      <!-- Music Player -->
+      <div class="music-player">
+        <div class="track-info">
+          <p id="trackName">No track selected</p>
+        </div>
+        <div class="player-controls">
+          <button id="prev">⏮️</button>
+          <button id="play">▶️</button>
+          <button id="next">⏭️</button>
+        </div>
+        <div class="sliders">
+          <input type="range" id="progress" min="0" max="1" step="0.001" value="0" />
+          <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+        </div>
+      </div>
+
+      <audio id="audio"></audio>
+      <script>
+        // Redirect to default artist if none specified
+        if (!window.location.search.includes('artist=')) {
+          window.location.search = 'artist=weeknd';
+        }
+      </script>
+      <script src="script.js"></script>
+    </div>
+  </div>
+<script>
+ // <![CDATA[  <-- For SVG support
+ if ('WebSocket' in window) {
+  (function () {
+   function refreshCSS() {
+    var sheets = [].slice.call(document.getElementsByTagName("link"));
+    var head = document.getElementsByTagName("head")[0];
+    for (var i = 0; i < sheets.length; ++i) {
+     var elem = sheets[i];
+     var parent = elem.parentElement  head;
+     parent.removeChild(elem);
+     var rel = elem.rel;
+     if (elem.href && typeof rel != "string"  rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+      var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+      elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+     }
+     parent.appendChild(elem);
+    }
+   }
+   var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+   var address = protocol + window.location.host + window.location.pathname + '/ws';
+   var socket = new WebSocket(address);
+   socket.onmessage = function (msg) {
+    if (msg.data == 'reload') window.location.reload();
+    else if (msg.data == 'refreshcss') refreshCSS();
+   };
+   if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+    console.log('Live reload enabled.');
+    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+   }
+  })();
+ }
+ else {
+  console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+ }
+ // ]]>
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings</title>
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <div id="settingsPanel" class="settings-panel">
+    <a href="home.html" class="back-arrow">← Back</a>
+    <h2>Settings</h2>
+
+    <div class="settings-list">
+<div class="setting-item">
+
+<div class="actions">
+<a href="addaccount.html" style="text-decoration:none;color:white">
+      <div class="card">
+        <h3>Add Account</h3>
+        <p>Link another account to manage profiles.</p>
+      </div>
+</a>
+</div>
+</div>
+         <div class="setting-item">
+        <i class="icon">🔔</i>
+        <div>
+          <p class="title">Notifications</p>
+          <label>
+            <input type="checkbox" id="notificationsToggle" />
+            Enable Alerts
+          </label>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <i class="icon">📶</i>
+        <div>
+          <p class="title">Media Quality</p>
+          <select id="qualitySelect">
+            <option value="Low">Low</option>
+            <option value="Normal" selected>Normal</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <i class="icon">🔒</i>
+        <div>
+          <p class="title">Privacy</p>
+          <label>
+            <input type="checkbox" id="privacyToggle" />
+            Private Profile
+          </label>
+        </div>
+      </div>
+    </div> <!-- CLOSES .settings-list -->
+
+  </div> <!-- CLOSES #settingsPanel -->
+
+  <script src="settings.js"></script>
+<script src="share.js"></script>
+</body>
+</html>

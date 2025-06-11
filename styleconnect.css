@@ -1,0 +1,149 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  color: #1db954;
+  margin-bottom: 10px;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #1db954;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+  position: relative;
+  z-index: 1101;
+}
+
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  user-select: none;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 1.5rem; /* Gap between hamburger and logo */
+  user-select: none;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -220px;
+  width: 200px;
+  height: 100%;
+  background-color: #282828;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 1100;
+}
+
+.side-menu.show {
+  left: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu ul li {
+  padding: 1rem;
+  border-bottom: 1px solid #444;
+}
+
+.side-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+button {
+  background-color: #1db954;
+  border: none;
+  padding: 15px;
+  color: white;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #17a44b;
+}
+
+#form-status {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.social-links {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.social-links h2 {
+  margin-bottom: 20px;
+  color: #1db954;
+}
+
+.icons a {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #1e1e1e;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.icons a:hover {
+  background-color: #1db954;
+  transform: scale(1.05);
+}

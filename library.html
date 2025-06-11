@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spotify Library</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #121212;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: #1db954;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 25px;
+      height: 20px;
+      margin-right: 20px;
+    }
+
+    .hamburger span {
+        display: block;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+
+    nav.side-menu {
+      background: #282828;
+      width: 200px;
+      height: calc(100vh - 50px);
+      position: fixed;
+      top: 50px;
+      left: 0;
+      padding-top: 20px;
+      box-sizing: border-box;
+    }
+
+    nav.side-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav.side-menu ul li {
+      margin-bottom: 15px;
+      padding-left: 20px;
+    }
+
+    nav.side-menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+       transition: color 0.3s;
+    }
+
+    nav.side-menu ul li a:hover {
+      color: #1db954;
+    }
+
+   
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+      min-height: calc(100vh - 50px);
+      box-sizing: border-box;
+      background: #181818;
+      padding-bottom: 100px; 
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    
+    #playlistsContainer .playlist {
+      background: #282828;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 5px #000;
+    }
+
+    .playlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .playlist-header button {
+      background: #1db954;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .playlist-header button:hover {
+      background: #17a447;
+    }
+
+ 
+    .playlist input[type="text"],
+    .playlist input[type="url"] {
+      padding: 8px;
+      margin-right: 10px;
+      border-radius: 4px;
+      border: none;
+      width: 180px;
+    }
+
+    .playlist button {
+      background: #1db954;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .playlist button:hover {
+      background: #17a447;
+    }
+
+    /* Songs list */
+    .songs {
+      margin-top: 10px;
+    }
+
+    .song-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background: #181818;
+      border-radius: 5px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .song-item:hover {
+      background: #333;
+    }
+
+    .song-item button {
+      background: transparent;
+      border: none;
+      color: #e22134;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0 6px;
+      font-size: 1rem;
+    }
+
+  
+    #nowPlaying {
+      margin-top: 40px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1db954;
+    }
+
+   
+    .search-container {
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-container input {
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      width: 300px;
+      background: #282828;
+      color: white;
+    }
+
+    .search-container button {
+      background: #1db954;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-container button:hover {
+      background: #17a447;
+    }
+
+    
+    #searchResults {
+      margin-top: 20px;
+      background: #282828;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #181818;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .search-result-item:hover {
+      background: #333;
+    }
+
+    .search-result-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      margin-right: 15px;
+    }
+
+    .search-result-info {
+      flex: 1;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .search-result-artist {
+      font-size: 0.9em;
+      color: #b3b3b3;
+    }
+
+    /* Music Player Styles (from second example) */
+    .music-player {
+      position: fixed;
+      bottom: 0;
+      left: 220px;
+      right: 0;
+      background-color: #282828;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .track-info {
+      width: 200px;
+    }
+
+    .player-controls {
+      display: flex;
+      gap: 20px;
+    }
+
+    .player-controls button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .sliders {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .sliders input[type="range"] {
+      width: 100%;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      nav.side-menu {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+      }
+      .content {
+        margin-left: 0;
+      }
+      .search-container input {
+        width: 100%;
+      }
+      .music-player {
+        left: 0;
+        flex-direction: column;
+        padding: 10px;
+      }
+      .track-info, .sliders {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">Spotify</div>
+  </div>
+
+  <nav class="side-menu" id="sideMenu">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="connect.html">Connect with Us</a></li>
+      <li><a href="#" onclick="shareSite()">Share</a></li>
+      <li><a href="help.html">Help</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h1>Music Library</h1>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for songs, artists..." />
+      <button onclick="searchSongs()">Search</button>
+    </div>
+
+    <div id="searchResults" style="display: none;"></div>
+
+    <div>
+      <h2>Create New Playlist</h2>
+      <input type="text" id="newPlaylistName" placeholder="Playlist name" />
+      <button onclick="createPlaylist()">Create Playlist</button>
+    </div>
+
+    <div id="playlistsContainer"></div>
+
+    <!-- Music Player from second example -->
+    <div class="music-player">
+      <div class="track-info">
+        <p id="trackName">No track selected</p>
+      </div>
+      <div class="player-controls">
+        <button id="prev">⏮️</button>
+        <button id="play">▶️</button>
+        <button id="next">⏭️</button>
+      </div>
+      <div class="sliders">
+        <input type="range" id="progress" min="0" max="1" step="0.001" value="0" />
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+      </div>
+    </div>
+    <audio id="audio"></audio>
+  </div>
+
+  <script>
+    // Audio player functionality from second example
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('play');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const progress = document.getElementById('progress');
+    const volume = document.getElementById('volume');
+    const trackName = document.getElementById('trackName');
+
+    let isPlaying = false;
+    let currentTrackIndex = 0;
+    let tracks = [];
+
+    // Function to play a song
+    function playSong(src, name) {
+      audio.src = src;
+      trackName.textContent = name;
+      audio.play();
+      isPlaying = true;
+      playBtn.textContent = '⏸️';
+
+      // Add to tracks history if not already there
+      if (!tracks.includes(src)) {
+        tracks.push(src);
+        currentTrackIndex = tracks.length - 1;
+      } else {
+        currentTrackIndex = tracks.indexOf(src);
+      }
+    }
+
+    // Toggle play/pause
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+        playBtn.textContent = '▶️';
+      } else {
+        audio.play();
+        playBtn.textContent = '⏸️';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Play previous song
+    function prevSong() {
+      currentTrackIndex--;
+      if (currentTrackIndex < 0) {
+        currentTrackIndex = tracks.length - 1;
+      }
+      audio.src = tracks[currentTrackIndex];
+      audio.play();
+      isPlaying = true;
+      playBtn.textContent = '⏸️';
+    }
+
+    // Play next song
+    function nextSong() {
+      currentTrackIndex++;
+      if (currentTrackIndex >= tracks.length) {
+        currentTrackIndex = 0;
+      }
+      audio.src = tracks[currentTrackIndex];
+      audio.play();
+      isPlaying = true;
+      playBtn.textContent = '⏸️';
+    }
+
+    // Update progress bar
+    function updateProgress() {
+      progress.value = audio.currentTime / audio.duration;
+      if (audio.ended) {
+        nextSong();
+      }
+    }
+
+    // Set progress when user clicks on progress bar
+    function setProgress() {
+      audio.currentTime = progress.value * audio.duration;
+    }
+
+    // Set volume
+    function setVolume() {
+      audio.volume = volume.value;
+    }
+
+    // Event listeners
+    playBtn.addEventListener('click', togglePlay);
+    prevBtn.addEventListener('click', prevSong);
+    nextBtn.addEventListener('click', nextSong);
+    audio.addEventListener('timeupdate', updateProgress);
+    progress.addEventListener('input', setProgress);
+    volume.addEventListener('input', setVolume);
+
+    // Original library functionality
+    let playlists = [];
+    let allSongs = []; // This will store all available songs for searching
+
+    const playlistsContainer = document.getElementById('playlistsContainer');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    // Initialize with some artist data (similar to your other page)
+    function initializeSongData() {
+      const artistData = {
+        'weeknd': {
+          name: 'The Weeknd',
+          image: 'https://i.scdn.co/image/ab67616100005174b5f9e28219c169fd4b9e8379',
+          songs: [
+            { title: 'Blinding Lights', album: 'After Hours (2020)', duration: '3:20', src: 'songs/blinding-lights.mp3', artist: 'The Weeknd' },
+            { title: 'Starboy', album: 'Starboy (2016)', duration: '3:50', src: 'songs/starboy.mp3', artist: 'The Weeknd' },
+            { title: 'Save Your Tears', album: 'After Hours (2020)', duration: '3:35', src: 'songs/save-your-tears.mp3', artist: 'The Weeknd' },
+            { title: 'The Hills', album: 'Beauty Behind the Madness (2015)', duration: '3:41', src: 'songs/the-hills.mp3', artist: 'The Weeknd' }
+          ]
+        },
+        'ed-sheeran': {
+          name: 'Ed Sheeran',
+          image: 'edsheeran.jpeg',
+          songs: [
+            { title: 'Shape of You', album: '÷ (2017)', duration: '3:53', src: 'songs/shape-of-you.mp3', artist: 'Ed Sheeran' },
+            { title: 'Perfect', album: '÷ (2017)', duration: '4:23', src: 'songs/perfect.mp3', artist: 'Ed Sheeran' },
+            { title: 'Thinking Out Loud', album: 'x (2014)', duration: '4:41', src: 'songs/thinking-out-loud.mp3', artist: 'Ed Sheeran' }
+          ]
+        },
+        'ariana-grande': {
+          name: 'Ariana Grande',
+          image: 'ariana.jpeg',
+          songs: [
+            { title: 'thank u, next', album: 'thank u, next (2019)', duration: '3:27', src: 'songs/thank-u-next.mp3', artist: 'Ariana Grande' },
+            { title: '7 rings', album: 'thank u, next (2019)', duration: '2:58', src: 'songs/7-rings.mp3', artist: 'Ariana Grande' },
+            { title: 'positions', album: 'positions (2020)', duration: '2:52', src: 'songs/positions.mp3', artist: 'Ariana Grande' }
+          ]
+        },
+        'post-malone': {
+          name: 'Post Malone',
+          image: 'post.jpeg',
+          songs: [
+            { title: 'Circles', album: 'Hollywood\'s Bleeding (2019)', duration: '3:35', src: 'songs/circles.mp3', artist: 'Post Malone' },
+            { title: 'Sunflower', album: 'Spider-Man: Into the Spider-Verse (2018)', duration: '2:38', src: 'songs/sunflower.mp3', artist: 'Post Malone' },
+            { title: 'Rockstar', album: 'beerbongs & bentleys (2018)', duration: '3:38', src: 'songs/rockstar.mp3', artist: 'Post Malone' }
+          ]
+        },
+        'bruno-mars': {
+          name: 'Bruno Mars',
+          image: 'bruno.jpeg',
+          songs: [
+            { title: 'Uptown Funk', album: 'Uptown Special (2014)', duration: '4:30', src: 'songs/uptown-funk.mp3', artist: 'Bruno Mars' },
+            { title: 'That\'s What I Like', album: '24K Magic (2016)', duration: '3:26', src: 'songs/thats-what-i-like.mp3', artist: 'Bruno Mars' },
+            { title: 'Just the Way You Are', album: 'Doo-Wops & Hooligans (2010)', duration: '3:40', src: 'songs/just-the-way-you-are.mp3', artist: 'Bruno Mars' }
+          ]
+        },
+        'taylor-swift': {
+          name: 'Taylor Swift',
+          image: 'taylor.jpeg',
+          songs: [
+            { title: 'Blank Space', album: '1989 (2014)', duration: '3:51', src: 'songs/blank-space.mp3', artist: 'Taylor Swift' },
+            { title: 'Love Story', album: 'Fearless (2008)', duration: '3:55', src: 'songs/love-story.mp3', artist: 'Taylor Swift' },
+            { title: 'Shake It Off', album: '1989 (2014)', duration: '3:39', src: 'songs/shake-it-off.mp3', artist: 'Taylor Swift' }
+          ]
+        }
+      };
+
+      // Flatten all songs into one array for searching
+      allSongs = [];
+      for (const artist in artistData) {
+        allSongs = allSongs.concat(artistData[artist].songs);
+      }
+    }
+
+    // Search function
+    function searchSongs() {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        searchResults.style.display = 'none';
+        return;
+      }
+
+      const results = allSongs.filter(song => 
+        song.title.toLowerCase().includes(query) || 
+        song.artist.toLowerCase().includes(query)
+      );
+
+      displaySearchResults(results);
+    }
+
+    // Display search results
+    function displaySearchResults(results) {
+      searchResults.innerHTML = '';
+      
+      if (results.length === 0) {
+        searchResults.innerHTML = '<p>No results found</p>';
+        searchResults.style.display = 'block';
+        return;
+      }
+
+      results.forEach(song => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'search-result-item';
+        resultItem.onclick = () => {
+          playSong(song.src, `${song.artist} - ${song.title}`);
+          searchResults.style.display = 'none';
+        };
+
+        resultItem.innerHTML = `
+          <img src="${getArtistImage(song.artist)}" alt="${song.title}" />
+          <div class="search-result-info">
+            <div class="search-result-title">${song.title}</div>
+            <div class="search-result-artist">${song.artist} • ${song.album}</div>
+          </div>
+        `;
+        
+        searchResults.appendChild(resultItem);
+      });
+
+      searchResults.style.display = 'block';
+    }
+
+    // Helper function to get artist image
+    function getArtistImage(artistName) {
+      // This is a simplified version - you might want to expand this
+      if (artistName === 'The Weeknd') return 'https://i.scdn.co/image/ab67616100005174b5f9e28219c169fd4b9e8379';
+      if (artistName === 'Ed Sheeran') return 'edsheeran.jpeg';
+      if (artistName === 'Ariana Grande') return 'ariana.jpeg';
+      if (artistName === 'Post Malone') return 'post.jpeg';
+      if (artistName === 'Bruno Mars') return 'bruno.jpeg';
+      if (artistName === 'Taylor Swift') return 'taylor.jpeg';
+      return 'default-artist.jpg'; // fallback image
+    }
+
+    function createPlaylist() {
+      const nameInput = document.getElementById('newPlaylistName');
+      const name = nameInput.value.trim();
+      if (!name) {
+        alert("Please enter a playlist name");
+        return;
+      }
+      if (playlists.some(pl => pl.name === name)) {
+        alert("Playlist already exists!");
+        return;
+      }
+      playlists.push({ name: name, songs: [] });
+      nameInput.value = '';
+      renderPlaylists();
+    }
+
+    function renderPlaylists() {
+      playlistsContainer.innerHTML = '';
+      playlists.forEach((playlist, pIndex) => {
+        const plDiv = document.createElement('div');
+        plDiv.className = 'playlist';
+
+        // Playlist header + delete button
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'playlist-header';
+        headerDiv.innerHTML = `<strong>${playlist.name}</strong>`;
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Delete Playlist';
+        delBtn.onclick = () => {
+          if (confirm(`Delete playlist "${playlist.name}"?`)) {
+            playlists.splice(pIndex, 1);
+            renderPlaylists();
+          }
+        }
+        headerDiv.appendChild(delBtn);
+        plDiv.appendChild(headerDiv);
+
+        // Add song inputs
+        const addSongDiv = document.createElement('div');
+        addSongDiv.style.marginTop = '8px';
+
+        const songTitleInput = document.createElement('input');
+        songTitleInput.type = 'text';
+        songTitleInput.placeholder = 'Song title';
+        songTitleInput.id = `songTitle-${pIndex}`;
+
+        const songUrlInput = document.createElement('input');
+        songUrlInput.type = 'url';
+        songUrlInput.placeholder = 'Song URL (mp3)';
+        songUrlInput.id = `songUrl-${pIndex}`;
+
+        const addSongBtn = document.createElement('button');
+        addSongBtn.textContent = 'Add Song';
+        addSongBtn.onclick = () => {
+          const title = document.getElementById(`songTitle-${pIndex}`).value.trim();
+          const url = document.getElementById(`songUrl-${pIndex}`).value.trim();
+          if (!title || !url) {
+            alert("Enter both song title and URL");
+            return;
+          }
+          playlists[pIndex].songs.push({ title, url });
+          document.getElementById(`songTitle-${pIndex}`).value = '';
+          renderPlaylists();
+        };
+
+        addSongDiv.appendChild(songTitleInput);
+        addSongDiv.appendChild(songUrlInput);
+        addSongDiv.appendChild(addSongBtn);
+        plDiv.appendChild(addSongDiv);
+        // Songs list
+        const songsDiv = document.createElement('div');
+        songsDiv.className = 'songs';
+        if (playlist.songs.length === 0) {
+          songsDiv.textContent = "No songs in this playlist.";
+        } else {
+          playlist.songs.forEach((song, sIndex) => {
+            const songDiv = document.createElement('div');
+            songDiv.className = 'song-item';
+            songDiv.textContent = song.title;
+            songDiv.title = "Click to play";
+
+            songDiv.onclick = () => {
+              playSong(song.url, song.title);
+            };
+
+            // Delete song button
+            const delSongBtn = document.createElement('button');
+            delSongBtn.textContent = '✕';
+            delSongBtn.title = "Delete song";
+            delSongBtn.style.color = "#e22134";
+            delSongBtn.onclick = (e) => {
+              e.stopPropagation();
+              if (confirm(`Delete song "${song.title}"?`)) {
+                playlists[pIndex].songs.splice(sIndex, 1);
+                renderPlaylists();
+              }
+            };
+
+            songDiv.appendChild(delSongBtn);
+            songsDiv.appendChild(songDiv);
+          });
+        }
+        plDiv.appendChild(songsDiv);
+
+        playlistsContainer.appendChild(plDiv);
+      });
+    }
+
+    // Initialize when page loads
+    initializeSongData();
+    renderPlaylists();
+
+    // Add event listener for Enter key in search
+    searchInput.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        searchSongs();
+      }
+    });
+  </script>
+<script src="share.js"></script>
+</body>
+</html>
