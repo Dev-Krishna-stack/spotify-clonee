@@ -113,10 +113,10 @@ function loadArtistData(artistId) {
       image: 'weeknd.jpeg',
       monthlyListeners: '85.5M',
       songs: [
-        { title: 'Blinding Lights', album: 'After Hours (2020)', duration: '3:20', src: 'songs/blinding-lights.mp3' },
+        { title: 'Blinding Lights', album: 'After Hours (2020)', duration: '3:20', src: 'blinding-lights.mp3' },
         { title: 'Starboy', album: 'Starboy (2016)', duration: '3:50', src: 'songs/starboy.mp3' },
-        { title: 'Save Your Tears', album: 'After Hours (2020)', duration: '3:35', src: 'songs/save-your-tears.mp3' },
-        { title: 'The Hills', album: 'Beauty Behind the Madness (2015)', duration: '3:41', src: 'songs/the-hills.mp3' }
+        { title: 'Save Your Tears', album: 'After Hours (2020)', duration: '3:35', src: 'save-your-tears.mp3' },
+        { title: 'The Hills', album: 'Beauty Behind the Madness (2015)', duration: '3:41', src: 'the-hills.mp3' }
       ],
     },
     'ed-sheeran': {
@@ -124,9 +124,9 @@ function loadArtistData(artistId) {
       image: 'edsheeran.jpeg',
       monthlyListeners: '78.2M',
       songs: [
-        { title: 'Shape of You', album: '÷ (2017)', duration: '3:53', src: 'songs/shape-of-you.mp3' },
-        { title: 'Perfect', album: '÷ (2017)', duration: '4:23', src: 'songs/perfect.mp3' },
-        { title: 'Thinking Out Loud', album: 'x (2014)', duration: '4:41', src: 'songs/thinking-out-loud.mp3' }
+        { title: 'Shape of You', album: '÷ (2017)', duration: '3:53', src: 'shape-of-you.mp3' },
+        { title: 'Perfect', album: '÷ (2017)', duration: '4:23', src: 'perfect.mp3' },
+        { title: 'Thinking Out Loud', album: 'x (2014)', duration: '4:41', src: 'thinking-out-loud.mp3' }
       ],
     },
     'ariana-grande': {
@@ -134,9 +134,9 @@ function loadArtistData(artistId) {
       image: 'ariana.jpeg',
       monthlyListeners: '72.8M',
       songs: [
-        { title: 'thank u, next', album: 'thank u, next (2019)', duration: '3:27', src: 'songs/thank-u-next.mp3' },
+        { title: 'thank u, next', album: 'thank u, next (2019)', duration: '3:27', src: 'thank-u-next.mp3' },
         { title: '7 rings', album: 'thank u, next (2019)', duration: '2:58', src: '7-rings.mp3' },
-        { title: 'positions', album: 'positions (2020)', duration: '2:52', src: 'songs/positions.mp3' }
+        { title: 'positions', album: 'positions (2020)', duration: '2:52', src: 'positions.mp3' }
       ],
     },
     'post-malone': {
@@ -144,9 +144,9 @@ function loadArtistData(artistId) {
       image: 'post.jpeg',
       monthlyListeners: '68.3M',
       songs: [
-        { title: 'Circles', album: 'Hollywood\'s Bleeding (2019)', duration: '3:35', src: 'songs/circles.mp3' },
-        { title: 'Sunflower', album: 'Spider-Man: Into the Spider-Verse (2018)', duration: '2:38', src: 'songs/sunflower.mp3' },
-        { title: 'Rockstar', album: 'beerbongs & bentleys (2018)', duration: '3:38', src: 'songs/rockstar.mp3' }
+        { title: 'Circles', album: 'Hollywood\'s Bleeding (2019)', duration: '3:35', src: 'circles.mp3' },
+        { title: 'Sunflower', album: 'Spider-Man: Into the Spider-Verse (2018)', duration: '2:38', src: 'sunflower.mp3' },
+        { title: 'Rockstar', album: 'beerbongs & bentleys (2018)', duration: '3:38', src: 'rockstar.mp3' }
       ],
     },
     'bruno-mars': {
@@ -154,9 +154,9 @@ function loadArtistData(artistId) {
       image: 'bruno.jpeg',
       monthlyListeners: '65.7M',
       songs: [
-        { title: 'Uptown Funk', album: 'Uptown Special (2014)', duration: '4:30', src: 'songs/uptown-funk.mp3' },
-        { title: 'That\'s What I Like', album: '24K Magic (2016)', duration: '3:26', src: 'songs/thats-what-i-like.mp3' },
-        { title: 'Just the Way You Are', album: 'Doo-Wops & Hooligans (2010)', duration: '3:40', src: 'songs/just-the-way-you-are.mp3' }
+        { title: 'Uptown Funk', album: 'Uptown Special (2014)', duration: '4:30', src: 'uptown-funk.mp3' },
+        { title: 'That\'s What I Like', album: '24K Magic (2016)', duration: '3:26', src: 'thats-what-i-like.mp3' },
+        { title: 'Just the Way You Are', album: 'Doo-Wops & Hooligans (2010)', duration: '3:40', src: 'just-the-way-you-are.mp3' }
       ],
     },
     'taylor-swift': {
@@ -164,9 +164,9 @@ function loadArtistData(artistId) {
       image: 'taylor.jpeg',
       monthlyListeners: '62.4M',
       songs: [
-        { title: 'Blank Space', album: '1989 (2014)', duration: '3:51', src: 'songs/blank-space.mp3' },
-        { title: 'Love Story', album: 'Fearless (2008)', duration: '3:55', src: 'songs/love-story.mp3' },
-        { title: 'Shake It Off', album: '1989 (2014)', duration: '3:39', src: 'songs/shake-it-off.mp3' }
+        { title: 'Blank Space', album: '1989 (2014)', duration: '3:51', src: 'blank-space.mp3' },
+        { title: 'Love Story', album: 'Fearless (2008)', duration: '3:55', src: 'love-story.mp3' },
+        { title: 'Shake It Off', album: '1989 (2014)', duration: '3:39', src: 'shake-it-off.mp3' }
       ],
     }
   };
