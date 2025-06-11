@@ -114,7 +114,7 @@ function loadArtistData(artistId) {
       monthlyListeners: '85.5M',
       songs: [
         { title: 'Blinding Lights', album: 'After Hours (2020)', duration: '3:20', src: 'blinding-lights.mp3' },
-        { title: 'Starboy', album: 'Starboy (2016)', duration: '3:50', src: 'songs/starboy.mp3' },
+        { title: 'Starboy', album: 'Starboy (2016)', duration: '3:50', src: 'starboy.mp3' },
         { title: 'Save Your Tears', album: 'After Hours (2020)', duration: '3:35', src: 'save-your-tears.mp3' },
         { title: 'The Hills', album: 'Beauty Behind the Madness (2015)', duration: '3:41', src: 'the-hills.mp3' }
       ],
